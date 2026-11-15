@@ -1,0 +1,13 @@
+{
+  "name": "Regalizo",
+  "short_name": "Regalizo",
+  "description": "El organizador del regalo en grupo: amigo invisible sin caos.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFF7F0",
+  "theme_color": "#E4573D",
+  "lang": "es",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

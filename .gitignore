@@ -1,0 +1,10 @@
+# Exploración local (scripts de Playwright + capturas de la beta anterior)
+.explore/
+
+# Dependencias
+node_modules/
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log

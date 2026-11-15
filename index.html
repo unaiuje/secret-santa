@@ -1,0 +1,1136 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Regalizo — el organizador del regalo en grupo</title>
+<meta name="description" content="Amigo invisible sin caos: normas, perfiles, sorteo justo, ideas de regalo y recordatorios. Todo en un enlace.">
+<meta name="theme-color" content="#E4573D">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+:root{
+  --bg:#FAF8F5; --card:#FFFFFF; --ink:#201A15; --mut:#8D8177; --line:#EDE4DA;
+  --acc:#E4573D; --accSoft:#FDEEE9;
+  --blu:#2B6CB0; --bluSoft:#EAF1F9;
+  --grn:#1F8A5B; --grnSoft:#E5F3EC;
+  --amb:#B97E12; --ambSoft:#FBF2DF;
+  --r:16px;
+  --sh:0 1px 2px rgba(32,26,21,.05),0 10px 30px rgba(32,26,21,.06);
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased;font-size:15px}
+@media(min-width:900px){body{background:linear-gradient(180deg,#FDFBF8, #F6F0E9)}}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px}
+header.topbar{position:sticky;top:0;z-index:20;background:rgba(250,248,245,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:12px;height:60px}
+.brand{font-weight:800;font-size:17px;display:flex;align-items:center;gap:8px;cursor:pointer;background:none;border:0;font-family:inherit;color:var(--ink)}
+.brand .bmark{width:30px;height:30px;border-radius:9px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px}
+.htitle{flex:1;text-align:center;font-weight:600;font-size:14px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.spacer40{width:40px;flex:none}
+.ava{border-radius:999px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex:none;user-select:none}
+.ava.sm{width:34px;height:34px;font-size:13px}
+.ava.md{width:42px;height:42px;font-size:15px}
+.ava.lg{width:56px;height:56px;font-size:20px}
+button.iconbtn{width:38px;height:38px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:15px;cursor:pointer;color:var(--ink);flex:none;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+button.iconbtn:hover{border-color:#DCCFC0}
+main{padding:26px 0 60px}
+h1{font-size:26px;font-weight:800;letter-spacing:-.01em}
+.sub{color:var(--mut);font-size:14px;line-height:1.6;margin-top:4px}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.13em;color:var(--mut);margin-bottom:10px;text-transform:uppercase}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:14px;box-shadow:var(--sh)}
+.pagehead{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
+.pagehead .actions{display:flex;gap:8px;flex-wrap:wrap}
+.notice{display:flex;gap:10px;align-items:flex-start;background:var(--ambSoft);border:1px solid #EFDCAE;border-radius:12px;padding:12px 14px;font-size:13.5px;font-weight:500;line-height:1.5;margin-bottom:12px}
+.notice.g{background:var(--grnSoft);border-color:#C9E6D6}
+.notice.b{background:var(--bluSoft);border-color:#CCDDEC}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;border-radius:13px;font-weight:600;font-size:14.5px;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:filter .15s,transform .05s;padding:0 16px}
+.btn:hover{filter:brightness(.97)}
+.btn:active{transform:scale(.985)}
+.btn:focus-visible{outline:3px solid var(--accSoft);outline-offset:1px}
+.btn.pri{background:var(--acc);color:#fff}
+.btn.grn{background:var(--grn);color:#fff}
+.btn.gho{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn.sm{min-height:40px;font-size:13.5px;border-radius:11px;width:auto;display:inline-flex}
+.btn.google{background:#fff;border:1px solid #DADCE0;color:#3c4043;font-weight:500}
+.btn.google:hover{background:#f8f9fa;filter:none}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.btnrow .btn{width:auto;flex:1;min-width:170px}
+.field{margin-bottom:18px}
+.field>label{display:block;font-weight:600;font-size:12.5px;color:var(--mut);margin-bottom:8px;letter-spacing:.02em}
+.inp{width:100%;min-height:48px;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;font-size:15px;font-family:inherit;background:#fff;color:inherit;transition:border-color .15s}
+.inp:hover{border-color:#DCCFC0}
+.inp:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px var(--accSoft)}
+.mono{font-family:ui-monospace,Consolas,monospace;font-weight:700;font-size:20px;text-align:center;letter-spacing:.35em}
+.seg{display:flex;background:#F3ECE3;border-radius:12px;padding:4px;gap:4px;margin-bottom:10px}
+.seg button{flex:1;min-height:40px;border:0;border-radius:9px;background:transparent;font-weight:600;font-family:inherit;font-size:13.5px;color:var(--mut);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:13px;color:var(--mut);cursor:pointer;font-family:inherit}
+.chip:hover{border-color:#DCCFC0}
+.chip.on{background:var(--accSoft);border-color:var(--acc);color:var(--acc)}
+.togrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1.5px solid var(--line);border-radius:13px;margin-bottom:14px;cursor:pointer}
+.togrow:hover{border-color:#DCCFC0}
+.togrow input{width:22px;height:22px;accent-color:var(--acc);flex:none}
+.mrow{display:flex;justify-content:space-between;font-weight:600;font-size:13px;margin-top:14px}
+.meter{height:10px;border-radius:999px;background:#F1E8DD;overflow:hidden;margin-top:7px}
+.meter i{display:block;height:100%;border-radius:999px;background:var(--acc);transition:width .4s}
+.meter.b i{background:var(--blu)}
+.row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.row .grow{flex:1;min-width:0}
+.row b{font-size:14px;font-weight:600}
+.badge{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.badge.ok{background:var(--grnSoft);color:var(--grn)}
+.badge.warn{background:var(--ambSoft);color:var(--amb)}
+.badge.blu{background:var(--bluSoft);color:var(--blu)}
+.badge.neu{background:#F1EBE3;color:var(--mut)}
+.pillrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pill{background:#F3ECE3;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:600;color:#6E5F52}
+.ni{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line);font-size:13.5px;font-weight:500;line-height:1.5}
+.ni:last-child{border-bottom:0}
+.tl{list-style:none;padding:0}
+.tl li{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.tl li:last-child{border-bottom:0}
+.tl .d{flex:none;width:92px;font-weight:700;font-size:12.5px;color:var(--mut)}
+.tl .t{font-size:13.5px;font-weight:500;line-height:1.5}
+.steps{display:flex;gap:6px;margin:2px 0 20px}
+.steps i{height:5px;flex:1;border-radius:999px;background:#EBDFD1}
+.steps i.on{background:var(--acc)}
+.idea{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 14px;border:1.5px solid var(--line);border-radius:13px;margin-bottom:8px}
+.idea:hover{border-color:#DCCFC0}
+.idea .nm{font-weight:600;font-size:13.5px;line-height:1.45}
+.idea .pr{font-weight:700;color:var(--acc);white-space:nowrap}
+a.alink{color:var(--blu);font-weight:600;font-size:13px;text-decoration:none}
+a.alink:hover{text-decoration:underline}
+.bub{max-width:86%;padding:10px 14px;border-radius:15px;font-size:13.5px;font-weight:500;margin-bottom:8px;line-height:1.5}
+.bub.q{margin-left:auto;background:var(--accSoft)}
+.bub.a{background:#F3ECE3}
+.rangeends{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);font-weight:500;margin-top:4px}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.hero{max-width:420px;margin:40px auto 0;text-align:center}
+.hero .logo{font-size:52px;margin-bottom:10px}
+.hero h1{font-size:30px;line-height:1.2;margin:14px 0 10px}
+.pillc{display:inline-block;background:#F3ECE3;color:#6E5F52;font-weight:600;font-size:12px;border-radius:999px;padding:5px 12px}
+.stars{display:flex;gap:4px;justify-content:center;margin:8px 0 12px}
+.stars button{font-size:32px;background:none;border:0;cursor:pointer;filter:grayscale(1);opacity:.35;font-family:inherit}
+.stars button.on{filter:none;opacity:1}
+.dots{letter-spacing:2px;color:var(--acc)}
+.exrow{display:flex;gap:8px;margin-top:8px}
+.big-emoji{font-size:46px;margin:6px 0}
+.center{text-align:center}
+.spacer{height:10px}
+.lock{font-size:12.5px;color:var(--mut);line-height:1.55}
+.cards{display:grid;gap:14px;grid-template-columns:1fr}
+.grid2{display:grid;gap:14px;grid-template-columns:1fr}
+.narrow{max-width:560px;margin:0 auto}
+.tabbar{display:flex;gap:8px;margin:4px 0 14px;flex-wrap:wrap}
+.tabbar .chip{flex:1;text-align:center;min-width:130px}
+.evcard{display:flex;flex-direction:column}
+.evcard .foot{display:flex;gap:8px;margin-top:auto;padding-top:14px;flex-wrap:wrap}
+.evtop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.evtop b{font-size:15.5px;font-weight:700;line-height:1.35}
+.menuwrap{position:relative}
+.overlay{position:fixed;inset:0;z-index:30}
+.menu{position:fixed;top:66px;right:16px;z-index:31;width:250px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 40px rgba(32,26,21,.14);overflow:hidden}
+.menu .mhead{padding:14px 16px;border-bottom:1px solid var(--line)}
+.menu .mhead b{display:block;font-size:14px}
+.menu .mhead span{font-size:12px;color:var(--mut)}
+.menu button.mi{display:flex;width:100%;text-align:left;padding:11px 16px;background:none;border:0;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--ink);cursor:pointer;gap:10px}
+.menu button.mi:hover{background:#F7F1EA}
+.menu button.mi.danger{color:#B3361F}
+.accrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;background:#fff;border:1.5px solid var(--line);border-radius:13px;cursor:pointer;font-family:inherit;margin-bottom:8px}
+.accrow:hover{border-color:#DCCFC0}
+.accrow b{display:block;font-size:14px}
+.accrow span{font-size:12.5px;color:var(--mut)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;font-weight:600;font-size:13.5px;opacity:0;transition:.25s;z-index:100;max-width:90vw;text-align:center;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:99;overflow:hidden}
+.confetti span{position:absolute;top:-30px;animation:fall 2.1s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(240deg)}}
+.footnote{margin-top:28px;text-align:center}
+.toneopts{display:grid;gap:10px;grid-template-columns:1fr}
+.toneopt{border:1.5px solid var(--line);border-radius:13px;padding:12px 14px;cursor:pointer;background:#fff;text-align:left;font-family:inherit}
+.toneopt:hover{border-color:#DCCFC0}
+.toneopt.on{border-color:var(--acc);background:var(--accSoft)}
+.toneopt b{display:block;font-size:14px;margin-bottom:2px}
+.toneopt span{font-size:12.5px;color:var(--mut);line-height:1.4}
+.codechip{display:inline-flex;align-items:center;gap:10px;background:#F3ECE3;border-radius:12px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);font-family:inherit;font-size:13px;font-weight:600;color:var(--mut)}
+.codechip b{letter-spacing:.18em;font-family:ui-monospace,Consolas,monospace;color:var(--ink);font-size:14px}
+.countpill{display:inline-block;background:var(--bluSoft);color:var(--blu);font-weight:700;font-size:12.5px;border-radius:999px;padding:5px 12px}
+@media(min-width:640px){.toneopts{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:640px){
+  .cards{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+}
+@media(min-width:840px){
+  .grid2{grid-template-columns:1fr 1fr;align-items:start}
+  .narrow{max-width:600px}
+  main{padding-top:34px}
+  .evcard{margin-bottom:0}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap" id="hdr"></div></header>
+<main><div class="wrap" id="app"></div></main>
+<div id="toast" class="toast"></div>
+<script>
+'use strict';
+/* ================= datos ================= */
+const KEY='regalizo-v2';
+const HOBBIES=['running','café','leer','plantas','cocinar','cine','videojuegos','música','viajar','fotografía','animales','fitness','tecnología','moda'];
+const CATALOG={
+  'running':[{n:'Mochila de hidratación',p:24},{n:'Cintas LED para correr',p:12},{n:'Guantes táctiles de running',p:9}],
+  'café':[{n:'Prensa francesa 600 ml',p:19},{n:'Pack de cafés de especialidad',p:15},{n:'Molinillo manual de café',p:23}],
+  'leer':[{n:'Novela negra recomendada',p:17},{n:'Luz de lectura + marcapáginas',p:12},{n:'3 meses de audiolibros',p:21}],
+  'plantas':[{n:'Kit de plantas colgantes',p:22},{n:'Regadera de diseño',p:14},{n:'Guía de cuidados botánicos',p:16}],
+  'cocinar':[{n:'Set de especias del mundo',p:18},{n:'Cuchillo santoku',p:25},{n:'Delantal con humor',p:13}],
+  'cine':[{n:'Kit maratón: mantita + palomitas',p:16},{n:'Póster de su peli favorita',p:12}],
+  'videojuegos':[{n:'Mando retro USB',p:22},{n:'Luz ambiental RGB',p:17}],
+  'música':[{n:'Vinilo de su banda',p:20},{n:'Altavoz bluetooth mini',p:24}],
+  'viajar':[{n:'Organizador de maleta',p:13},{n:'Adaptador universal de enchufes',p:15}],
+  'fotografía':[{n:'Trípode flexible',p:16},{n:'Gran angular para móvil',p:24}],
+  'animales':[{n:'Juguete interactivo para mascota',p:11},{n:'Tazón antideslizante de diseño',p:12}],
+  'fitness':[{n:'Set de bandas elásticas',p:10},{n:'Botella que marca los litros',p:14}],
+  'tecnología':[{n:'Cargador magnético 3 en 1',p:25},{n:'Funda rara y buena',p:15}],
+  'moda':[{n:'Bufanda de lana',p:21},{n:'Cinturón clásico',p:18}]
+};
+const CHAT_QS=[
+  {q:'¿Café, té… o nada de los dos?',a:'Café ☕ y cuanto más raro, mejor'},
+  {q:'¿Qué regalo has recibido ya demasiadas veces?',a:'Calcetines 😅 otra vez y me mudo de familia'},
+  {q:'¿Talla de camiseta?',a:'M — no te líes'},
+  {q:'¿Color que jamás pondrías en tu salón?',a:'Marrón. Mi salón no es de 1985'},
+  {q:'¿Prefieres algo útil o algo con humor?',a:'Con humor… pero que sirva para algo también'},
+  {q:'¿Hay algo que quieras para el año que viene?',a:'Una máquina de palomitas. En serio'}
+];
+const MOCK=[
+  {name:'Marta',bio:'Barista los findes. Si tiene cafetera, no necesita nada más.',likes:['el café de especialidad','las novelas negras','las plantas colgantes'],noWant:'calcetines',hobbies:['café','leer','plantas'],tone:30},
+  {name:'Pablo',bio:'Corre un 10K cada domingo y colecciona gadgets inútiles con amor.',likes:['el running de los domingos','los gadgets raros','el queso curado'],noWant:'tazas',hobbies:['running','tecnología'],tone:60},
+  {name:'Laura',bio:'Cocina para 10 aunque vengan 4. Crítica de cine clandestina.',likes:['cocinar para gente','el cine coreano','los mercados de barrio'],noWant:'velas',hobbies:['cocinar','cine'],tone:40},
+  {name:'Diego',bio:'Retro-gamer. Su vinilo favorito vale más que su coche.',likes:['los indies de Nintendo','el vinilo','las pizzas caseras'],noWant:'corbatas',hobbies:['videojuegos','música'],tone:25},
+  {name:'Carmen',bio:'40 plantas, 0 arrepentimientos.',likes:['sus 40 plantas','las bufandas','el té verde'],noWant:'plásticos',hobbies:['plantas','moda'],tone:35},
+  {name:'Álex',bio:'Mochilero. Si hay montaña y café, allá que va.',likes:['viajar con mochila','la fotografía de calle','el café raro'],noWant:'souvenirs',hobbies:['viajar','fotografía','café'],tone:30},
+  {name:'Sofía',bio:'Su perro Lolo tiene Instagram. Lectora de fantasía épica.',likes:['su perro Lolo','las sagas de fantasía','el té chai'],noWant:'perfumes fuertes',hobbies:['animales','leer'],tone:20},
+  {name:'Jon',bio:'Gym a las 7. Sus batidos son legendarios (él lo dice).',likes:['el gym a las 7','las recetas fitness','los audiolibros'],noWant:'figuras',hobbies:['fitness','cocinar','leer'],tone:45}
+];
+const DEMO_QUEUE=[
+  {t:'join',p:0,msg:'Marta se ha unido (perfil pendiente)'},
+  {t:'join',p:1,msg:'Pablo se ha unido (perfil pendiente)'},
+  {t:'profile',p:0,msg:'Marta ha completado su perfil ✅'},
+  {t:'joinP',p:2,msg:'Laura se ha unido con perfil completo ✅'},
+  {t:'buy',p:2,msg:'Laura ya ha comprado su regalo 🎁'},
+  {t:'profile',p:1,msg:'Pablo ha completado su perfil ✅'},
+  {t:'join',p:3,msg:'Diego se ha unido (perfil pendiente)'},
+  {t:'buy',p:0,msg:'Marta ya ha comprado su regalo 🎁'},
+  {t:'joinP',p:4,msg:'Carmen se ha unido con perfil completo ✅'},
+  {t:'buy',p:1,msg:'Pablo ya ha comprado su regalo 🎁'},
+  {t:'join',p:5,msg:'Álex se ha unido (perfil pendiente)'},
+  {t:'profile',p:3,msg:'Diego ha completado su perfil ✅'},
+  {t:'joinP',p:6,msg:'Sofía se ha unido con perfil completo ✅'},
+  {t:'join',p:7,msg:'Jon se ha unido (perfil pendiente)'},
+  {t:'profile',p:5,msg:'Álex ha completado su perfil ✅'},
+  {t:'buy',p:3,msg:'Diego ya ha comprado su regalo 🎁'}
+];
+const PAL=['#E4573D','#2B6CB0','#1F8A5B','#B97E12','#7C5CBF','#C2497E','#2B8CA8','#8A6D3B'];
+const GOOGLE_G='<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.5 6.1 29.5 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.5 6.1 29.5 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.4-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.7l6.2 5.2C36.9 40.2 44 35 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg>';
+
+/* ================= estado ================= */
+let DB=(()=>{try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}})()||{accounts:{},cur:null};
+function save(){localStorage.setItem(KEY,JSON.stringify(DB))}
+const UI={screen:'landing',cur:null,tmp:null,profileBack:null,menuOpen:false,newAcc:false};
+const acc=()=>DB.accounts[DB.cur];
+const ev=()=>{const a=acc();return a?a.events.find(e=>e.id===UI.cur):null};
+const me=()=>{const e=ev();return e?e.people.find(p=>p.id==='me'):null};
+const nameOfIn=(e,id)=>{const p=e.people.find(x=>x.id===id);return p?p.name:id};
+const nameOf=id=>nameOfIn(ev(),id);
+const avaBg=name=>PAL[[...String(name)].reduce((a,c)=>a+c.charCodeAt(0),0)%PAL.length];
+function avaHTML(name,photo,cls){
+  if(photo)return`<span class="ava ${cls}" style="padding:0;overflow:hidden"><img src="${photo}" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></span>`;
+  return`<span class="ava ${cls}" style="background:${avaBg(name)}">${esc(String(name)[0].toUpperCase())}</span>`;
+}
+const isProfileComplete=()=>{const p=acc().profile;return (p.likes||[]).some(Boolean)||(p.hobbies||[]).length>0};
+const effDone=p=>p.me?isProfileComplete():p.profileDone;
+const freshReveal=()=>({done:false,guessed:null,correct:null,rating:0,comment:''});
+const deep=o=>JSON.parse(JSON.stringify(o));
+function defaultProfile(){return{likes:['','',''],noWant:'',hobbies:[],tone:35,username:'',bio:'',photo:null}}
+
+function loadTmp(){const p=acc().profile;UI.tmp={name:acc().user.name,username:acc().user.username||'',bio:p.bio||'',photo:p.photo||null,l0:(p.likes||[])[0]||'',l1:(p.likes||[])[1]||'',l2:(p.likes||[])[2]||'',noWant:p.noWant||'',hobbies:[...(p.hobbies||[])]}}
+function login(email,name){
+  if(!DB.accounts[email])DB.accounts[email]={user:{email,name:name||email.split('@')[0]},profile:defaultProfile(),events:[],profilePrompted:false};
+  else if(name)DB.accounts[email].user.name=name;
+  DB.cur=email;save();UI.cur=null;UI.newAcc=false;loadTmp();
+  UI.screen=isProfileComplete()?'home':'onboard';
+  render();
+}
+function logout(){DB.cur=null;save();UI.screen='landing';UI.cur=null;UI.menuOpen=false;render()}
+
+function genCode(){const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';return Array.from({length:6},()=>A[Math.floor(Math.random()*A.length)]).join('')}
+function newEvent(){
+  const a=acc();
+  return{id:'e'+Date.now(),code:genCode(),name:'Mi evento',year:2026,budgetType:'fixed',fixed:25,min:15,max:30,
+    dDraw:'2026-12-01',dLimit:'2026-12-20',dParty:'2026-12-25',tone:35,noRepeat:true,smart:true,theme:'',
+    exclusions:[],status:'draft',step:1,drawn:false,assign:null,prevAssign:null,strict:false,ideas:{},
+    chat:{sent:0,msgs:[]},reveal:freshReveal(),simIdx:0,lastNotified:null,guest:false,
+    people:[{id:'me',name:a.user.name,profileDone:false,purchased:false,me:true,likes:[],noWant:'',hobbies:[],tone:35,bio:''}]};
+}
+function guestEvent(){
+  const a=acc();
+  return Object.assign(newEvent(),{
+    name:'Navidad de Marta & los compis',guest:true,status:'active',step:4,
+    budgetType:'range',tone:40,
+    people:MOCK.slice(0,6).map((m,i)=>({id:'p'+i,name:m.name,profileDone:true,purchased:false,likes:m.likes,noWant:m.noWant,hobbies:m.hobbies,tone:m.tone}))
+      .concat([{id:'me',name:a.user.name,profileDone:isProfileComplete(),purchased:false,me:true,likes:(a.profile.likes||[]).filter(Boolean),noWant:a.profile.noWant||'',hobbies:a.profile.hobbies||[],tone:35,bio:a.profile.bio||''}])
+  });
+}
+function go(s){UI.screen=s;UI.menuOpen=false;render();window.scrollTo(0,0)}
+
+/* ================= helpers ================= */
+const $=s=>document.querySelector(s);
+const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const fdate=iso=>{if(!iso)return'';const d=new Date(iso+'T12:00:00');return d.getDate()+' '+d.toLocaleDateString('es-ES',{month:'short'})};
+const minus=(iso,d)=>{const dt=new Date(iso+'T12:00:00');dt.setDate(dt.getDate()-d);return dt.toISOString().slice(0,10)};
+const bumpYear=iso=>{const d=new Date(iso+'T12:00:00');d.setFullYear(d.getFullYear()+1);return d.toISOString().slice(0,10)};
+const fmtB=e=>e.budgetType==='fixed'?e.fixed+' €':e.min+'–'+e.max+' €';
+const budget=e=>e.budgetType==='fixed'?e.fixed:e.max;
+function daysTo(iso){const t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(iso+'T12:00:00')-t)/86400000)}
+function countLabel(e){
+  if(e.status==='done')return'Evento cerrado';
+  const target=e.drawn?e.dParty:e.dDraw;const n=daysTo(target);
+  if(n===0)return'¡Es hoy!';
+  if(n<0)return e.drawn?'Entrega pasada':'Fecha pasada';
+  return n+' día'+(n===1?'':'s')+' restantes';
+}
+const toneLabel=t=>t<34?'Divertido':t<67?'Equilibrado':'Formal';
+const toneDots=t=>{const n=Math.max(0,Math.min(5,Math.round(t/20)));return'<span class="dots">'+'●'.repeat(n)+'○'.repeat(5-n)+'</span>'};
+const statusBadge=e=>e.status==='done'?'<span class="badge ok">Cerrada</span>':e.status==='draft'?'<span class="badge warn">Borrador</span>':'<span class="badge blu">En marcha</span>';
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2400)}
+function confetti(){const c=document.createElement('div');c.className='confetti';for(let i=0;i<20;i++){const s=document.createElement('span');s.textContent=['🎉','✨','🎊','🎁','🧡'][i%5];s.style.left=(Math.random()*100)+'%';s.style.animationDelay=(Math.random()*.5)+'s';s.style.fontSize=(13+Math.random()*15)+'px';c.appendChild(s)}document.body.appendChild(c);setTimeout(()=>c.remove(),2800)}
+function ideasFor(person,budgetMax){
+  const out=[];
+  (person.hobbies||[]).forEach(h=>(CATALOG[h]||[]).forEach(i=>out.push(i)));
+  const seen=new Set();
+  return out.filter(i=>i.p<=budgetMax&&!seen.has(i.n)&&seen.add(i.n)).slice(0,3);
+}
+const myReceiver=()=>{const e=ev();return e&&e.assign?e.people.find(p=>p.id===e.assign['me']):null};
+const myGiver=()=>{const e=ev();if(!e||!e.assign)return null;for(const g in e.assign){if(e.assign[g]==='me')return e.people.find(p=>p.id===g)}return null};
+function regenIdeas(e){
+  if(!e||!e.drawn)return;
+  for(const g in e.assign){const r=e.people.find(p=>p.id===e.assign[g]);e.ideas[g]=ideasFor(r,budget(e))}
+}
+
+/* ================= sorteo ================= */
+function computeDraw(e){
+  const ids=e.people.map(p=>p.id);
+  const ex=(e.exclusions||[]).slice();
+  if(e.noRepeat&&e.prevAssign){
+    for(const g in e.prevAssign){const r=e.prevAssign[g];
+      if(e.people.some(p=>p.name===g)&&e.people.some(p=>p.name===r))ex.push([g,r]);}
+  }
+  const excluded=(g,r)=>ex.some(pair=>(pair[0]===nameOfIn(e,g)&&pair[1]===nameOfIn(e,r))||(pair[1]===nameOfIn(e,g)&&pair[0]===nameOfIn(e,r)));
+  const meP=e.people.find(p=>p.id==='me');
+  const overlap=id=>{const r=e.people.find(p=>p.id===id);if(!r||!meP)return 0;const A=new Set(meP.hobbies||[]);return (r.hobbies||[]).filter(h=>A.has(h)).length};
+  const attempt=strict=>{
+    let best=null,bestScore=-1;
+    for(let t=0;t<900;t++){
+      const rs=shuffle([...ids]);let ok=true;const m={};
+      ids.forEach((g,i)=>{m[g]=rs[i];if(g===rs[i])ok=false;if(strict&&excluded(g,rs[i]))ok=false});
+      if(!ok)continue;
+      if(!e.smart)return m;
+      const sc=overlap(m['me'])+Math.random()*0.5;
+      if(sc>bestScore){bestScore=sc;best=m}
+    }
+    return best;
+  };
+  let m=attempt(true),relaxed=false;
+  if(!m){m=attempt(false);relaxed=!!m&&ex.length>0}
+  if(!m)return{ok:false};
+  e.assign=m;e.drawn=true;e.strict=!relaxed;e.ideas={};
+  ids.forEach(g=>{const r=e.people.find(p=>p.id===m[g]);e.ideas[g]=ideasFor(r,budget(e))});
+  return{ok:true,relaxed};
+}
+function doLaunch(){
+  const e=ev();if(!e)return;
+  if(e.people.length<3){toast('Necesitas al menos 3 participantes');return}
+  e.chat={sent:0,msgs:[]};e.reveal=freshReveal();
+  const r=computeDraw(e);
+  if(!r.ok){toast('No hay combinación posible: relaja las normas');return}
+  me().purchased=false;save();
+  toast(r.relaxed?'Sorteo lanzado (restricciones relajadas)':'¡Sorteo lanzado! Esta es tu persona 🎉');
+  go('persona');
+}
+function reDraw(e,why){
+  e.chat={sent:0,msgs:[]};e.reveal=freshReveal();
+  const r=computeDraw(e);
+  if(!r.ok){toast('No se pudo recombinar el sorteo');return false}
+  me().purchased=false;save();toast(why);return true;
+}
+function runSim(){
+  const e=ev();if(!e)return;
+  const a=DEMO_QUEUE[e.simIdx];
+  if(!a){toast('El grupo está al día 🎉');return}
+  const m=MOCK[a.p];let p=e.people.find(x=>x.name===m.name);
+  if(a.t==='join'||a.t==='joinP'){
+    if(!p)e.people.push({id:'p'+a.p,name:m.name,profileDone:a.t==='joinP',purchased:false,likes:m.likes,noWant:m.noWant,hobbies:m.hobbies,tone:m.tone,bio:m.bio||''});
+  }else if(a.t==='profile'&&p){p.profileDone=true}
+  else if(a.t==='buy'&&p){p.purchased=true}
+  e.simIdx++;save();toast(a.msg);render();
+}
+function cloneEvent(e){
+  const a=acc();const next=deep(e);
+  next.id='e'+Date.now();next.code=genCode();next.year=e.year+1;
+  next.name=/\d{4}/.test(e.name)?e.name.replace(/\d{4}/,String(next.year)):e.name+' '+next.year;
+  next.dDraw=bumpYear(e.dDraw);next.dLimit=bumpYear(e.dLimit);next.dParty=bumpYear(e.dParty);
+  next.prevAssign=e.assign?Object.fromEntries(Object.entries(e.assign).map(([g,r])=>[nameOfIn(e,g),nameOfIn(e,r)])):null;
+  next.drawn=false;next.assign=null;next.strict=false;next.ideas={};next.status='active';next.step=3;
+  next.chat={sent:0,msgs:[]};next.reveal=freshReveal();next.simIdx=0;next.lastNotified=null;next.guest=false;
+  next.people.forEach(p=>p.purchased=false);
+  a.events.push(next);UI.cur=next.id;save();
+  toast('Evento creado para '+next.year+' — con «no repetir asignación» activado');
+  go('w3');
+}
+
+/* ================= vistas ================= */
+const dots=n=>'<div class="steps">'+[1,2,3,4].map(i=>'<i class="'+(i<=n?'on':'')+'"></i>').join('')+'</div>';
+const effName=p=>p.me?acc().user.name:p.name;
+function peopleRows(e){
+  return e.people.map(p=>{
+    const done=effDone(p);
+    return`
+    <div class="row">
+      ${avaHTML(effName(p),p.me?(acc().profile.photo||null):null,'md')}
+      <div class="grow"><b>${esc(effName(p))}</b>${p.me?' <span class="lock">(tú'+(e.guest?'':' · anfitrión')+')</span>':''}</div>
+      ${done?'<span class="badge ok">perfil ✓</span>':'<span class="badge warn">sin perfil</span>'}
+      ${e.drawn?(p.purchased?'<span class="badge ok">comprado ✓</span>':'<span class="badge blu">pendiente</span>'):''}
+      ${!p.me?`<button class="btn sm gho" data-act="delPerson" data-id="${p.id}" title="Eliminar">✕</button>`:''}
+    </div>`}).join('');
+}
+function peopleManager(e){return`
+  <div class="row" style="border-bottom:0;padding-bottom:4px">
+    <input class="inp" id="npName" placeholder="Añadir participante a mano…" style="flex:1">
+    <button class="btn sm gho" data-act="addPerson">Añadir</button>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn sm gho" data-act="sim">⚡ Simular actividad del grupo (demo)</button>
+  <p class="lock" style="margin-top:10px">${e.drawn?'Si eliminas a alguien con el sorteo lanzado, este se relanza automáticamente.':'Puedes eliminar a cualquiera con la ✕ de su fila.'}</p>`}
+
+function vLanding(){return`
+  <div class="hero">
+    <div class="logo">🎁</div>
+    <span class="pillc">Prototipo · tus datos se guardan en este navegador</span>
+    <h1>El amigo invisible,<br>sin caos.</h1>
+    <p class="sub">Eventos que se repiten cada año, perfiles que viajan contigo, sorteo justo e ideas de regalo que aciertan.</p>
+    <div class="spacer"></div>
+    <button class="btn google" data-act="loginGoogle">${GOOGLE_G}&nbsp;&nbsp;Continuar con Google</button>
+    <p class="lock" style="margin-top:12px">1 evento gratis · sin anuncios · tu perfil solo lo ve quien te regala</p>
+  </div>`}
+
+function vPick(){
+  const emails=Object.keys(DB.accounts);
+  return`
+  <div class="narrow" style="max-width:420px;margin-top:30px">
+    <div class="card">
+      <div class="kicker">Elegir cuenta</div>
+      ${GOOGLE_G.replace('<svg ','<svg style="display:block;margin:0 auto 14px" ')}
+      ${emails.map(em=>{const a=DB.accounts[em];return`
+        <button class="accrow" data-act="pickAcc" data-email="${esc(em)}">
+          ${avaHTML(a.user.name,a.profile.photo,'md')}
+          <div><b>${esc(a.user.name)}</b><span>${esc(em)}</span></div>
+        </button>`}).join('')}
+      ${UI.newAcc?`
+        <div class="field" style="margin-top:14px"><label>NOMBRE</label><input class="inp" id="naName" placeholder="Tu nombre"></div>
+        <div class="field"><label>EMAIL DE GOOGLE</label><input class="inp" id="naEmail" type="email" placeholder="tunombre@gmail.com"></div>
+        <button class="btn pri" data-act="createAcc">Crear cuenta y entrar</button>`
+      :`<div class="spacer"></div><button class="btn gho" data-act="newAcc">Usar otra cuenta</button>`}
+      <div class="spacer"></div>
+      <p class="lock center">Demo: el login con Google es una simulación de interfaz. El OAuth real se conecta al pasar a backend.</p>
+    </div>
+  </div>`}
+
+function vHome(){
+  const a=acc();
+  const evs=a.events.slice().sort((x,y)=>(x.status==='done')-(y.status==='done')||y.id.localeCompare(x.id));
+  return`
+  <div class="pagehead">
+    <div><h1>Mis eventos</h1><p class="sub">Se guardan solos: el año que viene los repites en un clic.</p></div>
+    <div class="actions">
+      <button class="btn pri sm" data-act="newEvent">＋ Nuevo evento</button>
+      <button class="btn gho sm" data-act="goCode">Unirme con código</button>
+    </div>
+  </div>
+  ${!isProfileComplete()?'<div class="notice" style="margin-bottom:16px">👋 Tu perfil está vacío: quien te regale irá a ciegas.<button class="btn sm pri" style="margin-left:auto" data-act="editProfile">Completar (90 s)</button></div>':''}
+  ${evs.length?`<div class="cards">${evs.map(e=>{
+    const total=e.people.length,prof=e.people.filter(p=>effDone(p)).length,bought=e.people.filter(p=>p.purchased).length;
+    return`
+    <div class="card evcard">
+      <div class="evtop"><b>${esc(e.name)}</b>${statusBadge(e)}</div>
+      <div class="pillrow">
+        <span class="pill">${e.year}</span>
+        <span class="pill">💶 ${fmtB(e)}</span>
+        <span class="pill">🎲 ${fdate(e.dDraw)}</span>
+        <span class="pill">🎉 ${fdate(e.dParty)}</span>
+        ${e.guest?'<span class="pill">👋 invitado</span>':''}
+        ${e.status!=='done'?`<span class="pill" style="background:var(--bluSoft);color:var(--blu)">⏳ ${countLabel(e)}</span>`:''}
+      </div>
+      <div class="mrow"><span>Perfiles</span><span>${prof}/${total}</span></div>
+      <div class="meter"><i style="width:${total?prof/total*100:0}%"></i></div>
+      ${e.drawn?`<div class="mrow"><span>Regalos</span><span>${bought}/${total}</span></div><div class="meter b"><i style="width:${total?bought/total*100:0}%"></i></div>`:''}
+      <div class="foot">
+        ${e.status==='draft'?`<button class="btn pri sm" data-act="openEvent" data-id="${e.id}">Continuar borrador</button>`
+          :e.guest&&!e.drawn?`<button class="btn pri sm" data-act="openEvent" data-id="${e.id}">Abrir</button>`
+          :`<button class="btn pri sm" data-act="openEvent" data-id="${e.id}">Abrir</button>`}
+        ${e.status==='done'?`<button class="btn gho sm" data-act="clone" data-id="${e.id}">Repetir en ${e.year+1}</button>`:''}
+        ${e.status==='draft'?`<button class="btn gho sm" data-act="delEvent" data-id="${e.id}">Eliminar</button>`:''}
+      </div>
+    </div>`}).join('')}</div>`
+  :`<div class="card center" style="padding:44px 20px">
+      <div class="big-emoji">🎅</div>
+      <h1 style="font-size:19px">Aún no tienes eventos</h1>
+      <p class="sub">Crea el primero: «Familia José», «Los compis del gym»… lo que quieras.</p>
+      <div class="spacer"></div>
+      <button class="btn pri" style="max-width:260px;margin:0 auto" data-act="newEvent">Crear mi primer evento</button>
+    </div>`}
+  <p class="footnote lock">Prototipo · los datos se guardan en este navegador por cuenta</p>`}
+
+function vW1(){const e=ev();return`
+  <div class="narrow">${dots(1)}
+  <div class="card">
+    <div class="field"><label>NOMBRE DEL EVENTO</label><input class="inp" data-bind="ev.name" value="${esc(e.name)}" placeholder="p. ej. Familia José"></div>
+    <div class="field"><label>PRESUPUESTO</label>
+      <div class="seg">
+        <button class="${e.budgetType==='fixed'?'on':''}" data-act="segB" data-v="fixed">Monto fijo</button>
+        <button class="${e.budgetType==='range'?'on':''}" data-act="segB" data-v="range">Rango</button>
+      </div>
+      ${e.budgetType==='fixed'
+        ?`<input class="inp" type="number" min="1" data-bind="ev.fixed" value="${e.fixed}">
+          <div class="chips" style="margin-top:8px">${[15,20,25,30].map(v=>`<button class="chip ${e.fixed===v?'on':''}" data-act="setFixed" data-v="${v}">${v} €</button>`).join('')}</div>`
+        :`<div class="exrow"><input class="inp" type="number" min="1" data-bind="ev.min" value="${e.min}"><input class="inp" type="number" min="1" data-bind="ev.max" value="${e.max}"></div>`}
+    </div>
+    <div class="field"><label>FECHAS CLAVE</label>
+      <input class="inp" type="date" data-bind="ev.dDraw" value="${e.dDraw}">
+      <p class="lock" style="margin:4px 0 8px">↑ Día del sorteo</p>
+      <input class="inp" type="date" data-bind="ev.dLimit" value="${e.dLimit}">
+      <p class="lock" style="margin:4px 0 8px">↑ Límite para comprar</p>
+      <input class="inp" type="date" data-bind="ev.dParty" value="${e.dParty}">
+      <p class="lock" style="margin:4px 0 0">↑ Día del intercambio</p>
+    </div>
+    <button class="btn pri" data-act="toW2">Continuar</button>
+  </div></div>`}
+
+function vW2(){const e=ev();return`
+  <div class="narrow">${dots(2)}
+  <div class="card">
+    <div class="field"><label>TONO DEL EVENTO</label>
+      <div class="toneopts">
+        ${[[20,'Divertido','Regalos graciosos o originales'],[50,'Equilibrado','Un mix entre útil y divertido'],[80,'Formal','Regalos útiles o elegantes']].map(o=>`
+        <button type="button" class="toneopt ${e.tone===o[0]?'on':''}" data-act="setTone" data-v="${o[0]}"><b>${o[1]}</b><span>${o[2]}</span></button>`).join('')}
+      </div>
+    </div>
+    <label class="togrow"><div><b>No repetir la asignación del año pasado</b><div class="lock">Se aplica automáticamente a los eventos que repitas</div></div><input type="checkbox" data-bind="ev.noRepeat" ${e.noRepeat?'checked':''}></label>
+    <div class="field"><label>TEMA OPCIONAL</label><input class="inp" data-bind="ev.theme" value="${esc(e.theme)}" placeholder="p. ej. «regalos hechos a mano»"></div>
+    <div class="field"><label>EXCLUSIONES («Pablo y Laura no se regalan»)</label>
+      <div class="exrow"><input class="inp" id="ex1" placeholder="Nombre"><input class="inp" id="ex2" placeholder="Nombre"><button class="btn sm gho" data-act="addEx">+</button></div>
+      ${(e.exclusions||[]).map((x,i)=>`<div class="row"><span class="grow"><b>${esc(x[0])}</b> y <b>${esc(x[1])}</b> no se regalan</span><button class="btn sm gho" data-act="delEx" data-i="${i}">✕</button></div>`).join('')}
+      <p class="lock" style="margin-top:8px">Podrás añadir más cuando la gente se una.</p>
+    </div>
+    <button class="btn pri" data-act="toW3">Continuar</button>
+  </div></div>`}
+
+function vW3(){const e=ev();return`
+  <div class="narrow">${dots(3)}
+  <div class="card">
+    <div class="kicker">Invita en 10 segundos</div>
+    <div class="inp mono" style="margin-bottom:10px">${esc(e.code||'NAVIDAD')}</div>
+    <button class="btn gho" data-act="copyLink">Copiar enlace para WhatsApp</button>
+    <p class="lock center" style="margin-top:10px">regalizo.app/e/${esc(e.code||'NAVIDAD')} — se pega en el grupo y ya está</p>
+  </div>
+  <div class="card">
+    <div class="kicker">Participantes (${e.people.length})</div>
+    ${peopleRows(e)}
+    <div class="spacer"></div>
+    ${peopleManager(e)}
+  </div>
+  <div class="card">
+    ${isProfileComplete()
+      ?'<div class="notice g" style="margin:0">Tu perfil está completo ✅ — viaja contigo entre eventos</div><div class="spacer"></div><button class="btn gho sm" data-act="editProfile">Editar mi perfil</button>'
+      :'<p class="lock" style="margin-bottom:10px">Aún no has rellenado tu perfil: quien te regale irá a ciegas.</p><button class="btn pri" data-act="editProfile">Completa tu perfil (90 s)</button>'}
+  </div>
+  <button class="btn pri" data-act="toW4">Continuar</button></div>`}
+
+function vW4(){const e=ev();return`
+  <div class="narrow">${dots(4)}
+  <div class="card">
+    <div class="kicker">Todo listo para el sorteo</div>
+    <div class="pillrow">
+      <span class="pill">👥 ${e.people.length} participantes</span>
+      <span class="pill">💶 ${fmtB(e)}</span>
+      <span class="pill">🎲 Sorteo ${fdate(e.dDraw)}</span>
+      <span class="pill">🎉 Entrega ${fdate(e.dParty)}</span>
+      ${e.noRepeat&&e.prevAssign?'<span class="pill">🔒 No repetir '+(e.year-1)+'</span>':''}
+      ${(e.exclusions||[]).length?`<span class="pill">🚫 ${e.exclusions.length} exclusión(es)</span>`:''}
+      ${e.code?`<span class="pill">✉️ Código ${esc(e.code)}</span>`:''}
+    </div>
+    ${e.smart?'<p class="lock" style="margin-top:12px">Con «persona afín» activada, el sorteo prioriza asignarte a alguien con hobbies parecidos a los tuyos. Es una sugerencia: nunca está garantizada.</p>':''}
+  </div>
+  ${e.people.length<3?'<div class="notice">Necesitas al menos 3 participantes para sortear.</div>':''}
+  ${e.people.filter(p=>!effDone(p)).length?`<div class="notice">${e.people.filter(p=>!effDone(p)).length} participantes sin perfil: sus regaladores irán a ciegas. Puedes lanzar igualmente.</div>`:'<div class="notice g">Todos los perfiles están completos. Los regalos van a ser buenos.</div>'}
+  ${e.drawn
+    ?'<div class="notice g">Sorteo lanzado. Nadie puede ver asignaciones ajenas.</div><button class="btn pri" data-go="persona">Ver mi persona</button>'
+    :`<button class="btn pri" data-act="launch">Lanzar el sorteo</button><p class="lock center" style="margin-top:10px">Todos recibirán su persona a la vez, el ${fdate(e.dDraw)}. En la demo: ahora mismo.</p>`}
+  </div>`}
+
+function panelSummary(e){return`
+  <div class="card">
+    <div class="evtop"><div class="h1" style="font-size:19px;font-weight:800">${esc(e.name)}</div>${statusBadge(e)}</div>
+    <div class="pillrow">
+      <span class="pill">${e.year}</span>
+      <span class="pill">💶 ${fmtB(e)}</span>
+      <span class="pill">🎲 ${fdate(e.dDraw)}</span>
+      <span class="pill">🛍 Límite ${fdate(e.dLimit)}</span>
+      <span class="pill">🎉 ${fdate(e.dParty)}</span>
+    </div>
+    ${e.theme?`<p class="lock" style="margin-top:10px">Tema: ${esc(e.theme)}</p>`:''}
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px">
+      <button type="button" class="codechip" data-act="copyCode" title="Copiar enlace de invitación">Código <b>${esc(e.code||'——')}</b> ⧉</button>
+      <span class="countpill">⏳ ${countLabel(e)}</span>
+    </div>
+  </div>`}
+
+function vPanel(){
+  const e=ev();
+  const total=e.people.length,prof=e.people.filter(p=>effDone(p)).length,bought=e.people.filter(p=>p.purchased).length;
+  const noProf=e.people.filter(p=>!effDone(p)),noBuy=e.drawn?e.people.filter(p=>!p.purchased):[];
+  let att='';
+  if(noProf.length)att+=`<div class="ni">⚠️ <span><b>${noProf.length} sin perfil</b> — nudge suave: «tu regalador irá a ciegas»</span></div>`;
+  if(e.drawn&&noBuy.length)att+=`<div class="ni">🎁 <span><b>${noBuy.length} regalos pendientes</b> — recordatorio con 3 ideas dentro de presupuesto</span></div>`;
+  if(e.drawn&&!me().purchased)att+='<div class="ni">🫵 <span><b>Te falta comprar tu regalo.</b> Un organizador no se libra.</span></div>';
+  if(!att)att='<div class="ni">✅ <span>Todo al día. Los mejores anfitriones no persiguen a nadie por WhatsApp.</span></div>';
+  return`
+  <div class="grid2">
+    <div>
+      ${panelSummary(e)}
+      <div class="card">
+        <div class="kicker">Progreso</div>
+        <div class="mrow"><span>Perfiles completados</span><span>${prof}/${total}</span></div>
+        <div class="meter"><i style="width:${total?prof/total*100:0}%"></i></div>
+        ${e.drawn?`<div class="mrow"><span>Regalos comprados</span><span>${bought}/${total}</span></div><div class="meter b"><i style="width:${total?bought/total*100:0}%"></i></div>`
+          :`<div class="notice" style="margin:14px 0 0">El sorteo se lanza el ${fdate(e.dDraw)}.</div>`}
+      </div>
+      <div class="card"><div class="kicker">Necesita tu atención</div>${att}</div>
+    </div>
+    <div>
+      ${!isProfileComplete()?`
+      <div class="card" style="border-color:var(--acc)">
+        <b>Mi perfil de gustos</b>
+        <p class="lock" style="margin:4px 0 12px">Sin esto, quien te regale irá a ciegas.</p>
+        <button class="btn pri sm" data-act="editProfile">Añade tus preferencias</button>
+      </div>`:''}
+      <div class="card">
+        ${!e.drawn
+          ?'<button class="btn pri" data-act="launch">Lanzar el sorteo ahora (demo)</button>'
+          :`<button class="btn pri" data-go="reveal">Ir a la revelación 🎉</button><div class="spacer"></div><button class="btn gho" data-go="persona">Ver mi persona</button>`}
+        <div class="spacer"></div>
+        <button class="btn gho sm" data-act="remind">🔔 Enviar recordatorio</button>
+        ${e.lastNotified?`<span class="lock" style="margin-left:8px">último: ${esc(e.lastNotified)}</span>`:''}
+      </div>
+      <div class="tabbar">
+        <button class="chip" data-go="panelPeople">👥 Participantes</button>
+        <button class="chip" data-go="panelRules">Normas</button>
+        <button class="chip" data-go="panelRem">🔔 Recordatorios</button>
+        <button class="chip" data-go="panelSettings">⚙️ Ajustes</button>
+      </div>
+    </div>
+  </div>`}
+
+function vPeople(){const e=ev();return`
+  <div class="card"><div class="kicker">Participantes (${e.people.length})</div>${peopleRows(e)}<div class="spacer"></div>${peopleManager(e)}</div>`}
+
+function vSettings(){
+  const e=ev();
+  return`
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <div class="kicker">Identidad y presupuesto</div>
+        <div class="field"><label>NOMBRE DEL EVENTO</label><input class="inp" data-bind="ev.name" value="${esc(e.name)}" placeholder="p. ej. Familia José"></div>
+        <div class="field"><label>PRESUPUESTO</label>
+          <div class="seg">
+            <button class="${e.budgetType==='fixed'?'on':''}" data-act="segB" data-v="fixed">Monto fijo</button>
+            <button class="${e.budgetType==='range'?'on':''}" data-act="segB" data-v="range">Rango</button>
+          </div>
+          ${e.budgetType==='fixed'
+            ?`<input class="inp" type="number" min="1" data-bind="ev.fixed" value="${e.fixed}">
+              <div class="chips" style="margin-top:8px">${[15,20,25,30].map(v=>`<button class="chip ${e.fixed===v?'on':''}" data-act="setFixed" data-v="${v}">${v} €</button>`).join('')}</div>`
+            :`<div class="exrow"><input class="inp" type="number" min="1" data-bind="ev.min" value="${e.min}"><input class="inp" type="number" min="1" data-bind="ev.max" value="${e.max}"></div>`}
+        </div>
+        <div class="field"><label>FECHAS CLAVE</label>
+          <input class="inp" type="date" data-bind="ev.dDraw" value="${e.dDraw}">
+          <p class="lock" style="margin:4px 0 8px">↑ Día del sorteo</p>
+          <input class="inp" type="date" data-bind="ev.dLimit" value="${e.dLimit}">
+          <p class="lock" style="margin:4px 0 8px">↑ Límite para comprar</p>
+          <input class="inp" type="date" data-bind="ev.dParty" value="${e.dParty}">
+          <p class="lock" style="margin:4px 0 0">↑ Día del intercambio</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="kicker">Normas</div>
+        <div class="field"><label>TONO DEL EVENTO</label>
+          <div class="toneopts">
+            ${[[20,'Divertido','Regalos graciosos o originales'],[50,'Equilibrado','Un mix entre útil y divertido'],[80,'Formal','Regalos útiles o elegantes']].map(o=>`
+            <button type="button" class="toneopt ${e.tone===o[0]?'on':''}" data-act="setTone" data-v="${o[0]}"><b>${o[1]}</b><span>${o[2]}</span></button>`).join('')}
+          </div>
+        </div>
+        <label class="togrow"><div><b>No repetir la asignación del año pasado</b><div class="lock">Se aplica a los eventos que repitas</div></div><input type="checkbox" data-bind="ev.noRepeat" ${e.noRepeat?'checked':''}></label>
+        <div class="field"><label>TEMA OPCIONAL</label><input class="inp" data-bind="ev.theme" value="${esc(e.theme)}" placeholder="p. ej. «regalos hechos a mano»"></div>
+        <div class="field"><label>EXCLUSIONES</label>
+          <div class="exrow"><input class="inp" id="ex1" placeholder="Nombre"><input class="inp" id="ex2" placeholder="Nombre"><button class="btn sm gho" data-act="addEx">+</button></div>
+          ${(e.exclusions||[]).map((x,i)=>`<div class="row"><span class="grow"><b>${esc(x[0])}</b> y <b>${esc(x[1])}</b> no se regalan</span><button class="btn sm gho" data-act="delEx" data-i="${i}">✕</button></div>`).join('')}
+        </div>
+        <p class="lock">Los cambios se guardan automáticamente. Las ideas de regalo se recalculan si tocas el presupuesto${e.drawn?', y las exclusiones se aplican al relanzar el sorteo':''}.</p>
+      </div>
+      ${e.drawn?`<div class="notice">El sorteo ya está lanzado: los cambios de exclusiones y «no repetir» entran en vigor si lo relanzas.</div><button class="btn pri" data-act="relaunch">Relanzar sorteo con los nuevos ajustes</button>`:''}
+    </div>
+  </div>`}
+
+function vRules(){const e=ev();return`
+  <div class="grid2"><div>
+  <div class="card">
+    <div class="kicker">Normas del evento</div>
+    <div class="ni">🎭 <span>Tono: <b>${toneLabel(e.tone)}</b></span></div>
+    <div class="ni">💶 <span>Presupuesto: <b>${fmtB(e)}</b></span></div>
+    ${e.theme?`<div class="ni">🎨 <span>Tema: <b>${esc(e.theme)}</b></span></div>`:''}
+    <div class="ni">🔒 <span>No repetir asignación previa: <b>${e.noRepeat?(e.prevAssign?'activado (aplicado del año pasado)':'activado (se aplicará al repetir)'):'desactivado'}</b></span></div>
+    ${(e.exclusions||[]).map(x=>`<div class="ni">🚫 <span><b>${esc(x[0])}</b> y <b>${esc(x[1])}</b> no se regalan entre ellos</span></div>`).join('')}
+    ${e.prevAssign?`<div class="ni">📜 <span>Historial ${e.year-1}: ${Object.entries(e.prevAssign).length} asignaciones guardadas</span></div>`:''}
+  </div>
+  <div class="notice b">El sorteo se calcula en el servidor y nadie —ni el anfitrión— puede ver asignaciones ajenas.</div>
+  <button class="btn gho sm" data-act="delEvent" data-id="${e.id}">Eliminar evento</button>
+  </div></div>`}
+
+function vRem(){const e=ev();return`
+  <div class="grid2"><div>
+  <div class="card">
+    <div class="kicker">Recordatorios inteligentes</div>
+    <ul class="tl">
+      <li><span class="d">Al crear</span><span class="t">Bienvenida + «completa tu perfil en 90 s» <span class="badge ok">enviado</span></span></li>
+      <li><span class="d">${fdate(e.dDraw)}</span><span class="t">El sorteo se lanza solo: «ya tienes tu persona»</span></li>
+      <li><span class="d">${fdate(minus(e.dLimit,10))}</span><span class="t">«¿Ya tienes ideas?» + 3 sugerencias dentro de presupuesto</span></li>
+      <li><span class="d">${fdate(minus(e.dLimit,3))}</span><span class="t">«Quedan 3 días» — aviso suave solo a quien falte</span></li>
+      <li><span class="d">${fdate(minus(e.dParty,1))}</span><span class="t">Víspera: último aviso + recordatorio de la revelación</span></li>
+    </ul>
+  </div>
+  <div class="notice ${(me()||{}).purchased?'g':''}">${(me()||{}).purchased?'Has marcado «ya lo compré»: no vuelves a recibir avisos de compra.':'Quien marca «Ya lo compré» deja de recibir recordatorios automáticamente.'}</div>
+  <button class="btn gho sm" data-act="remind">Enviar un recordatorio ahora</button>
+  </div></div>`}
+
+function vPersona(){
+  const e=ev();
+  if(!e.drawn)return'<div class="notice">El sorteo aún no se ha lanzado.</div><button class="btn pri" data-go="panel">Ir al panel</button>';
+  const r=myReceiver();
+  if(!r)return'<div class="notice">Algo raro: no tienes asignación. Re-lanza el sorteo.</div><button class="btn pri" data-go="panel">Ir al panel</button>';
+  const ideas=(e.ideas&&e.ideas['me'])||[];
+  const msgN=e.chat.msgs.filter(m=>m.a&&m.a!=='…').length;
+  return`
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <div class="kicker">Tu persona es</div>
+        <div class="row" style="border:0;padding:0 0 14px">
+          <div class="ava lg" style="background:${avaBg(r.name)}">${esc(r.name[0].toUpperCase())}</div>
+          <div class="grow"><div style="font-size:19px;font-weight:800">${esc(r.name)}</div><div class="lock">Le regalas tú. No sabrá quién.</div></div>
+        </div>
+        <div style="margin-bottom:10px">${(r.likes||[]).filter(Boolean).map(l=>`<span class="pill" style="margin:0 4px 6px 0">💚 ${esc(l)}</span>`).join('')}</div>
+        <p class="lock" style="margin-bottom:6px">NO quiere: <b>${esc(r.noWant||'—')}</b></p>
+        ${r.bio?`<p class="lock" style="margin:2px 0 8px;font-style:italic">“${esc(r.bio)}”</p>`:''}
+        <p class="lock">Nivel del evento: ${toneDots(e.tone)} ${toneLabel(e.tone)}</p>
+      </div>
+      <div class="notice b">Este perfil solo lo ves tú. ${esc(r.name)} nunca sabrá que le regalas.</div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="kicker">Ideas dentro de ${fmtB(e)}</div>
+        ${ideas.length?ideas.map(i=>`
+          <div class="idea"><div><div class="nm">${esc(i.n)}</div><div class="pr">${i.p} €</div></div>
+          <a class="alink" href="https://www.amazon.es/s?k=${encodeURIComponent(i.n)}&tag=regalizo-21" target="_blank" rel="noopener">Ver en Amazon ↗</a></div>`).join('')
+        :'<p class="lock">Sin ideas aún: pregúntale en el chat anónimo.</p>'}
+        <p class="lock" style="margin-top:6px">Los enlaces son de afiliación: mantienen la app gratis.</p>
+      </div>
+      <div class="card">
+        ${!me().purchased
+          ?'<button class="btn grn" data-act="toggleBuy">✓ Ya lo he comprado</button>'
+          :`<div class="notice g" style="margin:0 0 10px">Comprado. Recordatorios silenciados.</div><button class="btn gho sm" data-act="toggleBuy">Deshacer</button>`}
+        <div class="spacer"></div>
+        <button class="btn gho" data-go="chat">Pregúntale en anónimo${msgN?` · ${msgN} respuestas`:''}</button>
+        <div class="spacer"></div>
+        <button class="btn gho sm" data-act="editProfile">Editar mi perfil</button>
+      </div>
+    </div>
+  </div>`}
+
+function vChat(){
+  const e=ev();const r=myReceiver();
+  const pending=CHAT_QS.map((x,i)=>({x,i})).filter(o=>!e.chat.msgs.some(m=>m.q===o.x.q));
+  return`
+  <div class="narrow">
+  <div class="notice b">Nadie sabe quién pregunta. ${r?esc(r.name):''} responde sin saber quién eres.</div>
+  ${e.chat.msgs.map(m=>`<div class="bub q">${esc(m.q)}</div><div class="bub a">${m.a==='…'?'escribiendo…':esc(m.a)}</div>`).join('')}
+  ${e.chat.sent>=3
+    ?'<div class="notice" style="margin-top:12px">Has usado tus 3 preguntas de hoy. (Demo: reinicia para probar más.)</div>'
+    :(pending.length?`<div class="card"><div class="kicker">Elige una pregunta (${3-e.chat.sent} de hoy)</div>
+      ${pending.map(o=>`<div class="row"><span class="grow">${esc(o.x.q)}</span><button class="btn sm gho" data-act="ask" data-i="${o.i}">Enviar</button></div>`).join('')}</div>`:'')}
+  <button class="btn gho" data-go="persona">← Volver a mi persona</button>
+  </div>`}
+
+function vProfile(){return`
+  <div class="narrow">${profileEditor()}</div>`}
+
+function vOnboard(){
+  const a=acc();
+  return`
+  <div class="narrow" style="max-width:520px">
+    <div style="padding:0 0 14px">
+      <div class="row" style="border:0;padding:0">
+        ${avaHTML(a.user.name,a.profile.photo,'lg')}
+        <div class="grow"><div style="font-size:19px;font-weight:800">Hola, ${esc(a.user.name)}</div><div class="lock">Antes de nada: tu perfil. Es lo que hace que tu invisible acierte.</div></div>
+      </div>
+    </div>
+    ${profileEditor()}
+    <button class="btn gho" data-act="skipProfile">Saltar por ahora</button>
+    <p class="lock center" style="margin-top:10px">Solo lo verá quien te regale. Podrás editarlo siempre desde «Mi perfil».</p>
+  </div>`}
+
+function profileEditor(){
+  const t=UI.tmp||{name:acc().user.name,username:'',bio:'',photo:null,l0:'',l1:'',l2:'',noWant:'',hobbies:[]};
+  return`
+  <div class="grid2" style="max-width:900px;margin:0 auto">
+    <div class="card">
+      <div class="kicker">Tu identidad</div>
+      <div class="field"><label>FOTO</label>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          ${avaHTML(t.name||acc().user.name,t.photo,'lg')}
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="btn sm gho" data-act="pickPhoto">Cambiar foto</button>
+            ${t.photo?'<button class="btn sm gho" data-act="clearPhoto">Quitar</button>':''}
+          </div>
+          <input type="file" id="photoInput" accept="image/*" style="display:none">
+        </div>
+        <p class="lock" style="margin-top:8px">Se reduce y recorta automáticamente. Solo la ve tu grupo.</p>
+      </div>
+      <div class="field"><label>NOMBRE</label><input class="inp" data-bind="tmp.name" value="${esc(t.name)}" placeholder="Tu nombre"></div>
+      <div class="field"><label>NOMBRE DE USUARIO</label><input class="inp" data-bind="tmp.username" value="${esc(t.username)}" placeholder="usuario"><p class="lock" style="margin-top:6px">Así te verá la gente: @${esc(t.username||'usuario')}</p></div>
+      <div class="field"><label>DESCRIPCIÓN</label><textarea class="inp" rows="3" style="min-height:96px;resize:vertical" data-bind="tmp.bio" placeholder="Una frase sobre ti: a qué dedicas el tiempo, qué te define…">${esc(t.bio)}</textarea></div>
+    </div>
+    <div class="card">
+      <div class="kicker">Tus gustos · lo que hace acertar a tu invisible</div>
+      <div class="field"><label>TRES COSAS QUE TE GUSTAN</label>
+        <input class="inp" data-bind="tmp.l0" value="${esc(t.l0)}" placeholder="p. ej. el café de especialidad">
+        <div class="spacer"></div>
+        <input class="inp" data-bind="tmp.l1" value="${esc(t.l1)}" placeholder="p. ej. las novelas negras">
+        <div class="spacer"></div>
+        <input class="inp" data-bind="tmp.l2" value="${esc(t.l2)}" placeholder="p. ej. las plantas colgantes">
+      </div>
+      <div class="field"><label>UNA COSA QUE NO QUIERES</label>
+        <input class="inp" data-bind="tmp.noWant" value="${esc(t.noWant)}" placeholder="p. ej. calcetines">
+      </div>
+      <div class="field"><label>HOBBIES</label>
+        <div class="chips">${HOBBIES.map(h=>`<button class="chip ${(t.hobbies||[]).includes(h)?'on':''}" data-act="hob" data-h="${esc(h)}">${esc(h)}</button>`).join('')}</div>
+      </div>
+      <p class="lock" style="margin-bottom:12px">El nivel divertido/formal no va aquí: lo marca cada evento en sus normas.</p>
+      <button class="btn pri" data-act="saveProfile">Guardar mi perfil</button>
+    </div>
+  </div>`}
+
+function vWaiting(){
+  const e=ev();const p=me();
+  return`
+  <div class="narrow">
+  ${panelSummary(e)}
+  <div class="notice">El sorteo se lanza el ${fdate(e.dDraw)}. Te avisaremos por email y push.</div>
+  ${!isProfileComplete()
+    ?'<div class="notice g">Aún no has completado tu perfil: quien te regale irá a ciegas.</div><button class="btn pri" data-act="editProfile">Completa tu perfil (90 s)</button>'
+    :'<div class="notice g">Tu perfil está completo. Buen escaparate para tu invisible.</div>'}
+  ${e.drawn?'<button class="btn pri" data-go="persona">Ver mi persona</button>':'<button class="btn gho" data-act="launch">Lanzar el sorteo ahora (demo)</button>'}
+  </div>`}
+
+function vReveal(){
+  const e=ev();
+  if(!e.drawn)return'<div class="notice">Lanza primero el sorteo.</div><button class="btn pri" data-go="panel">Ir al panel</button>';
+  const g=myGiver();
+  if(!e.reveal.done){
+    const others=e.people.filter(p=>!p.me);
+    return`
+    <div class="card center" style="max-width:560px;margin:20px auto">
+      <div class="big-emoji">🤔</div>
+      <div style="font-size:19px;font-weight:800">¿Quién crees que ha sido tu invisible?</div>
+      <p class="lock" style="margin-bottom:14px">Apuesta antes de la revelación.</p>
+      <div class="chips" style="justify-content:center">${others.map(p=>`<button class="chip" data-act="guess" data-id="${p.id}">${esc(effName(p))}</button>`).join('')}</div>
+    </div>`}
+  const gift=(e.ideas[g.id]&&e.ideas[g.id][0])||(CATALOG[((me()||{}).hobbies||[])[0]]||[])[0]||{n:'un regalo con tu nombre',p:0};
+  const win=e.reveal.correct;
+  return`
+  <div class="grid2" style="max-width:900px;margin:0 auto">
+    <div class="card center">
+      <div class="big-emoji">${win?'🎯':'🙈'}</div>
+      <div style="font-size:19px;font-weight:800">${win?'¡Acertaste!':'No era '+esc(nameOf(e.reveal.guessed))+'…'}</div>
+      <p class="lock">Tu invisible era…</p>
+      <div class="ava lg" style="background:${avaBg(effName(g))};margin:14px auto">${esc(effName(g)[0].toUpperCase())}</div>
+      <div style="font-size:24px;font-weight:800">${esc(effName(g))}</div>
+      <p class="lock" style="margin-top:6px">Te regaló: <b>${esc(gift.n)}</b> (${gift.p} €)</p>
+    </div>
+    <div class="card">
+      <div class="kicker center" style="text-align:center">¿Qué te pareció tu regalo?</div>
+      <div class="stars">${[1,2,3,4,5].map(n=>`<button class="${e.reveal.rating>=n?'on':''}" data-act="rate" data-n="${n}">⭐</button>`).join('')}</div>
+      <input class="inp" data-bind="ev.reveal.comment" value="${esc(e.reveal.comment)}" placeholder="Una frase (opcional)">
+      <div class="spacer"></div>
+      <button class="btn pri" data-act="reviewDone">Enviar y cerrar el evento</button>
+    </div>
+  </div>`}
+
+function vThanks(){
+  const e=ev();
+  return`
+  <div class="narrow">
+  <div class="card center">
+    <div class="big-emoji">🧡</div>
+    <div style="font-size:20px;font-weight:800">¡Evento cerrado!</div>
+    <p class="sub">Reseñas enviadas, momento guardado.<br>El grupo de ${esc(e.year)} queda en el historial.</p>
+    <div class="pillrow" style="justify-content:center">
+      <span class="pill">👥 ${e.people.length}</span>
+      <span class="pill">💶 ${fmtB(e)}</span>
+      <span class="pill">⭐ ${e.reveal.rating||'—'}/5</span>
+    </div>
+  </div>
+  <div class="notice g">Historial guardado: al repetir el evento, «no repetir asignación» se activa solo y los perfiles viajan con el grupo.</div>
+  <div class="btnrow" style="justify-content:center">
+    <button class="btn pri" data-act="clone" data-id="${e.id}">Repetir en ${e.year+1}</button>
+    <button class="btn gho" data-act="goHome">Volver a mis eventos</button>
+  </div>
+  </div>`}
+
+function vCode(){return`
+  <div class="narrow" style="max-width:460px">
+    <div class="card">
+      <div class="kicker">Unirme con código</div>
+      <div class="field"><label>CÓDIGO DEL EVENTO</label><input class="inp mono" value="NAVIDAD" readonly></div>
+      <p class="lock center">Demo: entrarás en «Navidad de Marta &amp; los compis» como invitado</p>
+      <div class="spacer"></div>
+      <button class="btn pri" data-act="enterCode">Entrar al evento demo</button>
+    </div>
+  </div>`}
+
+const VIEWS={landing:vLanding,pick:vPick,home:vHome,code:vCode,onboard:vOnboard,w1:vW1,w2:vW2,w3:vW3,w4:vW4,panel:vPanel,panelPeople:vPeople,panelRules:vRules,panelRem:vRem,panelSettings:vSettings,persona:vPersona,chat:vChat,profile:vProfile,waiting:vWaiting,reveal:vReveal,thanks:vThanks};
+const TITLES={landing:'',pick:'Elegir cuenta',home:'Mis eventos',code:'Unirme',onboard:'Completa tu perfil',w1:'Nuevo evento · 1/4',w2:'Normas · 2/4',w3:'Invitar · 3/4',w4:'Sorteo · 4/4',panel:'Panel del evento',panelPeople:'Participantes',panelRules:'Normas',panelRem:'Recordatorios',panelSettings:'Ajustes del evento',persona:'Tu persona',chat:'Chat anónimo',profile:'Mi perfil',reveal:'Revelación',thanks:'Evento cerrado',waiting:'Tu evento'};
+const BACK={landing:null,pick:'landing',home:null,code:'home',onboard:null,w1:'home',w2:'w1',w3:'w2',w4:'w3',panel:'home',panelPeople:'panel',panelRules:'panel',panelRem:'panel',panelSettings:'panel',persona:'panel',chat:'persona',profile:()=>UI.profileBack||'home',reveal:'panel',thanks:'home',waiting:'home'};
+
+function renderHeader(){
+  const h=$('#hdr');const s=UI.screen;
+  const brand=`<button class="brand" data-act="goHome"><span class="bmark">🎁</span>Regalizo</button>`;
+  if(!acc()){h.innerHTML=brand+`<span class="htitle">${TITLES[s]||''}</span><span class="spacer40"></span>`;return}
+  const a=acc();
+  const menu=UI.menuOpen?`<div class="overlay" data-act="menu"></div>
+    <div class="menu">
+      <div class="mhead"><b>${esc(a.user.name)}</b><span>${esc(a.user.email)}</span></div>
+      <button class="mi" data-act="goProfile">👤 Mi perfil</button>
+      <button class="mi" data-act="goCode">✉️ Unirme con código</button>
+      <button class="mi" data-act="switchAcc">🔄 Cambiar de cuenta</button>
+      <button class="mi" data-act="logout">↩︎ Cerrar sesión</button>
+      <button class="mi danger" data-act="reset">🗑 Reiniciar demo</button>
+    </div>`:'';
+  const b=typeof BACK[s]==='function'?BACK[s]():BACK[s];
+  h.innerHTML=brand+
+    `<span class="htitle">${TITLES[s]||''}</span>`+
+    (s==='home'?'<span class="spacer40"></span>':b?`<button class="iconbtn" data-go="${b}" title="Volver">←</button>`:'<span class="spacer40"></span>')+
+    (a.profile.photo
+      ?`<button class="menuwrap ava sm" data-act="menu" style="padding:0;overflow:hidden" title="${esc(a.user.name)}"><img src="${a.profile.photo}" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></button>`
+      :`<button class="menuwrap ava sm" data-act="menu" style="background:${avaBg(a.user.name)}" title="${esc(a.user.name)}">${esc(a.user.name[0].toUpperCase())}</button>`)+menu;
+}
+function render(){
+  renderHeader();
+  $('#app').innerHTML=(VIEWS[UI.screen]||vLanding)();
+}
+
+/* ================= eventos ================= */
+function onAct(e){
+  const el=e.target.closest('[data-act],[data-go]');
+  if(!el)return;
+  if(el.dataset.go){go(el.dataset.go);return}
+  const a=el.dataset.act;
+  if(a!=='menu'&&UI.menuOpen){UI.menuOpen=false}
+  switch(a){
+    case 'menu':UI.menuOpen=!UI.menuOpen;render();break;
+    case 'loginGoogle':go('pick');break;
+    case 'pickAcc':login(el.dataset.email);break;
+    case 'newAcc':UI.newAcc=true;render();break;
+    case 'createAcc':{
+      const n=($('#naName')||{}).value||'',m=(($('#naEmail')||{}).value||'').trim().toLowerCase();
+      if(!m||!m.includes('@')){toast('Escribe un email válido');return}
+      login(m,n.trim()||m.split('@')[0]);toast('Sesión iniciada como '+m);break}
+    case 'logout':logout();break;
+    case 'switchAcc':go('pick');break;
+    case 'goHome':UI.cur=acc()&&acc().events.some(x=>x.id===UI.cur)?UI.cur:null;go('home');break;
+    case 'goCode':go('code');break;
+    case 'enterCode':{
+      const g=guestEvent();acc().events.push(g);UI.cur=g.id;save();
+      toast('Te has unido al evento como invitado');go('waiting');break}
+    case 'goProfile':{loadTmp();UI.profileBack='home';go('profile');break}
+    case 'editProfile':{
+      loadTmp();
+      UI.profileBack=['waiting','home','panel'].includes(UI.screen)?UI.screen:'persona';go('profile');break}
+    case 'skipProfile':{
+      acc().profilePrompted=true;save();
+      toast('Sin problema: complétalo cuando quieras desde «Mi perfil»');go('home');break}
+    case 'hob':{
+      if(!UI.tmp)UI.tmp={l0:'',l1:'',l2:'',noWant:'',hobbies:[],tone:35};
+      const hh=el.dataset.h;const arr=UI.tmp.hobbies;const i=arr.indexOf(hh);
+      if(i>=0)arr.splice(i,1);else if(arr.length<6)arr.push(hh);else toast('Máximo 6 hobbies');
+      save();render();break}
+    case 'saveProfile':{
+      if(!UI.tmp){toast('Nada que guardar');return}
+      const t=UI.tmp,p=acc().profile,u=acc().user;
+      p.likes=[t.l0,t.l1,t.l2].map(x=>x.trim()).filter(Boolean);
+      p.noWant=t.noWant.trim();p.hobbies=t.hobbies;p.photo=t.photo||null;
+      if((t.name||'').trim())u.name=t.name.trim();
+      u.username=(t.username||'').replace(/[@\s]/g,'').toLowerCase();
+      p.bio=(t.bio||'').trim();
+      const m=me();if(m){m.name=u.name;m.likes=p.likes.slice();m.noWant=p.noWant;m.hobbies=p.hobbies.slice();m.bio=p.bio;m.profileDone=true}
+      save();acc().profilePrompted=true;
+      toast('Perfil guardado ✅ — viaja contigo entre eventos');go(UI.profileBack||'home');break}
+    case 'pickPhoto':{const i=$('#photoInput');if(i)i.click();break}
+    case 'clearPhoto':{if(!UI.tmp)loadTmp();UI.tmp.photo=null;render();break}
+    case 'newEvent':{
+      const ne=newEvent();acc().events.push(ne);UI.cur=ne.id;save();go('w1');break}
+    case 'openEvent':{
+      UI.cur=el.dataset.id;const e2=ev();
+      if(e2.guest){go(e2.drawn?'persona':'waiting');break}
+      if(e2.status==='draft')go('w'+(e2.step||1));
+      else go('panel');break}
+    case 'clone':cloneEvent(acc().events.find(x=>x.id===el.dataset.id));break;
+    case 'delEvent':{
+      if(!confirm('¿Eliminar este evento y todo su historial?'))return;
+      const a2=acc();a2.events=a2.events.filter(x=>x.id!==el.dataset.id);
+      if(UI.cur===el.dataset.id)UI.cur=null;
+      save();toast('Evento eliminado');go('home');break}
+    case 'segB':{const e3=ev();e3.budgetType=el.dataset.v;regenIdeas(e3);save();render();break}
+    case 'setFixed':{const e3=ev();e3.fixed=+el.dataset.v;regenIdeas(e3);save();render();break}
+    case 'addEx':{
+      const e3=ev();const v1=($('#ex1')||{}).value&&$('#ex1').value.trim(),v2=($('#ex2')||{}).value&&$('#ex2').value.trim();
+      if(!v1||!v2||v1===v2){toast('Escribe dos nombres distintos');return}
+      e3.exclusions.push([v1,v2]);save();render();break}
+    case 'delEx':{const e3=ev();e3.exclusions.splice(+el.dataset.i,1);save();render();break}
+    case 'addPerson':{
+      const e3=ev();const inp=$('#npName');const nm=inp&&inp.value.trim();
+      if(!nm){toast('Escribe un nombre');return}
+      if(e3.people.some(p=>effName(p).toLowerCase()===nm.toLowerCase())){toast('Ya participa');return}
+      e3.people.push({id:'u'+Date.now(),name:nm,profileDone:false,purchased:false,likes:[],noWant:'',hobbies:[],tone:35});
+      save();toast(nm+' añadido — su perfil estará pendiente');render();break}
+    case 'delPerson':{
+      const e3=ev();const p=e3.people.find(x=>x.id===el.dataset.id);
+      if(!p)return;
+      if(e3.drawn){
+        if(!confirm('Eliminar a '+effName(p)+' relanzará el sorteo para el resto. ¿Seguro?'))return;
+        e3.people=e3.people.filter(x=>x.id!==p.id);
+        if(reDraw(e3,'Participante eliminado y sorteo relanzado'))render();
+      }else{
+        if(!confirm('¿Eliminar a '+effName(p)+' del evento?'))return;
+        e3.people=e3.people.filter(x=>x.id!==p.id);
+        save();toast('Participante eliminado');render();
+      }break}
+    case 'sim':runSim();break;
+    case 'toW2':{const e3=ev();if(!e3.name.trim())e3.name='Mi evento';e3.step=Math.max(e3.step||1,2);save();go('w2');break}
+    case 'toW3':{const e3=ev();e3.step=Math.max(e3.step||1,3);save();go('w3');break}
+    case 'toW4':{const e3=ev();e3.step=4;save();go('w4');break}
+    case 'launch':doLaunch();break;
+    case 'relaunch':{const e3=ev();if(reDraw(e3,'Sorteo relanzado con los nuevos ajustes'))render();break}
+    case 'remind':{const e3=ev();e3.lastNotified='hoy';save();toast('Recordatorio enviado (email + push) al grupo');render();break}
+    case 'toggleBuy':{
+      const p=me();p.purchased=!p.purchased;save();
+      toast(p.purchased?'Apuntado. Recordatorios silenciados':'Recordatorios reactivados');
+      render();break}
+    case 'copyLink':{
+      const e3=ev();
+      const txt='https://regalizo.app/e/'+(e3.code||'NAVIDAD')+' — únete al amigo invisible 🎁';
+      if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>toast('Enlace copiado ✅')).catch(()=>toast(txt));
+      else toast(txt);break}
+    case 'copyCode':{
+      const e3=ev();
+      const txt='https://regalizo.app/e/'+(e3.code||'NAVIDAD')+' — únete a «'+e3.name+'» 🎁';
+      if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>toast('Enlace de invitación copiado ✅')).catch(()=>toast(txt));
+      else toast(txt);break}
+    case 'setTone':{const e3=ev();e3.tone=+el.dataset.v;save();render();break}
+    case 'ask':{
+      const e3=ev();const q=CHAT_QS[+el.dataset.i];
+      if(e3.chat.sent>=3){toast('Límite de hoy alcanzado');return}
+      e3.chat.sent++;e3.chat.msgs.push({q:q.q,a:'…'});save();render();
+      setTimeout(()=>{const m=e3.chat.msgs.find(x=>x.q===q.q);if(m)m.a=q.a;save();render();toast('Respuesta recibida 💬')},900);break}
+    case 'guess':{
+      const e3=ev();const g=myGiver();
+      e3.reveal.done=true;e3.reveal.guessed=el.dataset.id;e3.reveal.correct=(el.dataset.id===g.id);
+      save();confetti();render();break}
+    case 'rate':{const e3=ev();e3.reveal.rating=+el.dataset.n;save();render();break}
+    case 'reviewDone':{
+      const e3=ev();
+      if(!e3.reveal.rating){toast('Elige de 1 a 5 estrellas');return}
+      e3.status='done';save();go('thanks');break}
+    case 'reset':
+      if(confirm('¿Reiniciar la demo? Se borrarán todas las cuentas y eventos de este navegador.')){localStorage.removeItem(KEY);location.reload()}
+      break;
+  }
+  if(UI.screen){render()}
+}
+function onBind(e){
+  const t=e.target;if(!t||!t.dataset||!t.dataset.bind)return;
+  const path=t.dataset.bind.split('.');let o;
+  if(path[0]==='ev'){o=ev();path.shift()}
+  else if(path[0]==='tmp'){o=UI.tmp;path.shift()}
+  else return;
+  if(!o)return;
+  let v=t.value;
+  if(t.type==='checkbox')v=t.checked;
+  if(t.type==='number'||t.type==='range')v=+v;
+  let cur=o;
+  for(let i=0;i<path.length-1;i++){if(typeof cur[path[i]]!=='object'||cur[path[i]]===null)cur[path[i]]={};cur=cur[path[i]]}
+  cur[path[path.length-1]]=v;save();
+  if(t.dataset.sync){const out=$(t.dataset.sync);if(out)out.textContent=path[path.length-1]==='tone'?toneLabel(+v):(v+' €')}
+  if(t.dataset.bind.startsWith('ev.')&&['fixed','min','max'].includes(path[path.length-1])){const e2=ev();if(e2&&e2.drawn)regenIdeas(e2)}
+}
+function handlePhoto(file){
+  if(!file)return;
+  if(!file.type||!file.type.startsWith('image/')){toast('Elige un archivo de imagen');return}
+  const fr=new FileReader();
+  fr.onload=()=>{
+    const img=new Image();
+    img.onload=()=>{
+      const MAX=256;const sc=Math.min(MAX/img.width,MAX/img.height,1);
+      const cv=document.createElement('canvas');
+      cv.width=Math.max(1,Math.round(img.width*sc));cv.height=Math.max(1,Math.round(img.height*sc));
+      cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);
+      if(!UI.tmp)loadTmp();
+      UI.tmp.photo=cv.toDataURL('image/jpeg',.82);
+      render();toast('Foto lista — pulsa «Guardar mi perfil»');
+    };
+    img.onerror=()=>toast('No se pudo leer la imagen');
+    img.src=fr.result;
+  };
+  fr.readAsDataURL(file);
+}
+document.addEventListener('click',onAct);
+document.addEventListener('input',onBind);
+document.addEventListener('change',e=>{
+  if(e.target&&e.target.id==='photoInput'){handlePhoto(e.target.files&&e.target.files[0]);e.target.value='';return}
+  onBind(e);
+});
+if(DB.cur&&acc()){UI.screen=(isProfileComplete()||acc().profilePrompted)?'home':'onboard';if(UI.screen==='onboard')loadTmp()}
+render();
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
